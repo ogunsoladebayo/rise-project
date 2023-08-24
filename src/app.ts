@@ -11,14 +11,17 @@ config();
 
 const app = express();
 
-(async () => await Database.connect())();
+( async () => {
+	await Database.connect();
+	await Database.migrate();
+} )();
 
 app.use(morgan("tiny"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use((req, res, next) => RequestContext.create(Database.DI.orm.em, next));
+app.use((req, res, next) => RequestContext.create(Database.orm.em, next));
 
 app.use(cors());
 app.use(helmet());
