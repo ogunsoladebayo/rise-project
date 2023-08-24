@@ -14,11 +14,11 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es2019",
-//    "typeRoots": [
-//      "node_modules/@types",
-//      "./src/typings.d.ts"
-//      // typings for plain json files
-//    ],
+    //    "typeRoots": [
+    //      "node_modules/@types",
+    //      "./src/typings.d.ts"
+    //      // typings for plain json files
+    //    ],
     "lib": [
       "esnext",
       "es2019",
@@ -36,5 +36,8 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "experimentalDecorators": true,
+  "emitDecoratorMetadata": true,
+  "esModuleInterop": true
 }

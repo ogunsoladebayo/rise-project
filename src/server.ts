@@ -14,7 +14,13 @@ colors.enable();
 const port = process.env.NODE_ENV && Number.isInteger(parseInt(process.env.PORT)) ? process.env.PORT : "3000";
 
 // verify environment variables
-const ENV_VARS = [ "PORT", "NODE_ENV" ];
+const ENV_VARS = [
+	"MIKRO_ORM_HOST",
+	"MIKRO_ORM_PORT",
+	"MIKRO_ORM_USER",
+	"MIKRO_ORM_PASSWORD",
+	"MIKRO_ORM_DB_NAME"
+];
 checkEnvs(ENV_VARS);
 
 // create a http server
