@@ -1,0 +1,40 @@
+{
+  "compileOnSave": false,
+  "ts-node": {
+    "swc": true
+  },
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "declaration": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2019",
+    "typeRoots": [
+      "node_modules/@types",
+      "./src/typings.d.ts"
+      // typings for plain json files
+    ],
+    "lib": [
+      "esnext",
+      "es2019",
+      "es2017",
+      "es2016",
+      "es2015",
+      "dom"
+    ]
+  },
+  "files": [
+    "./src/server.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
