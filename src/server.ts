@@ -1,5 +1,6 @@
-import colors from "colors";
+import * as colors from "colors";
 import app from "./app";
+import { checkEnvs } from "./utils";
 
 colors.setTheme({
 	success: "green",
@@ -13,13 +14,8 @@ colors.enable();
 const port = process.env.NODE_ENV && Number.isInteger(parseInt(process.env.PORT)) ? process.env.PORT : "3000";
 
 // verify environment variables
-const ENV_VARS = []
-ENV_VARS.forEach(function (key) {
-	if (!process.env[ key ]) {
-		console.error("ERROR: Missing the required environment variable " + key);
-		process.exit(1);
-	}
-});
+const ENV_VARS = [ "PORT", "NODE_ENV" ];
+checkEnvs(ENV_VARS);
 
 // create a http server
 const server = app.listen(port, () => {
