@@ -1,7 +1,10 @@
-import { Router } from 'express';
+import { Router } from "express";
 import { addComment } from "../controllers";
+import { protect } from "../middlewares/auth.middleware";
 
-export const postRouter = Router();
+const postRouter = Router();
 
-postRouter.route('/:postId/comments').post(addComment);
+postRouter.route("/:postId/comments").post(protect, addComment);
+
+export default postRouter;
 

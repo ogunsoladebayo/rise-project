@@ -3,6 +3,7 @@ import { BaseEntity } from "./BaseEntity";
 import { Post } from "./Post";
 import { Comment } from "./Comment";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 @Entity()
 export class User extends BaseEntity {
@@ -32,5 +33,15 @@ export class User extends BaseEntity {
     this.username = username;
     this.email = email;
     this.password = password;
+  }
+
+  async matchPassword (enteredPassword: string): Promise<boolean> {
+    return await bcrypt.compare(enteredPassword, this.hashedPassword);
+  }
+
+  getSignedJwtToken (): string {
+    return jwt.sign({ id: this.id, username: this.username }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN
+    })
   }
 }

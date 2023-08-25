@@ -1,4 +1,5 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
+import { Request } from "express-jwt";
 import asyncHandler from "../middlewares/async-handler";
 import { db } from "../../app";
 import { Comment, Post } from "../entities";
@@ -11,7 +12,7 @@ import AppError from "../../utils/app-error";
  * @description Create a new post for a user.
  */
 export const createPost = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-  const userId = parseInt(req.params.id);
+  const userId = parseInt(req.auth.id);
   const { title, content } = req.body;
 
   if (Number.isNaN(userId)) return next(new AppError(400, "Invalid user id"));
@@ -47,13 +48,14 @@ export const getPostsByUser = asyncHandler(async (req: Request, res: Response, n
  */
 export const addComment = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   const postId = parseInt(req.params.postId);
-  const { userId, content } = req.body;
+  const userId = parseInt(req.auth.id);
+  const { content } = req.body;
 
   if (Number.isNaN(postId)) return next(new AppError(400, "Invalid post id"));
-  if (Number.isNaN(parseInt(userId)) || !content) return next(new AppError(400, "Please provide valid user id and content"));
+  if (Number.isNaN(userId) || !content) return next(new AppError(400, "Please provide valid user id and content"));
 
   const post = await db.postRepository.findOneOrFail({ id: ( postId ) });
-  const user = await db.userRepository.findOneOrFail({ id: parseInt(userId) });
+  const user = await db.userRepository.findOneOrFail({ id: userId });
 
   const comment = new Comment(content);
   comment.post = post;

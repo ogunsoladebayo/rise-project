@@ -1,5 +1,7 @@
-export default function asyncHandler(fn: (arg0: any, arg1: any, arg2: any) => Promise<any>) {
-	return (req: any, res: any, next: (reason: any) => PromiseLike<never>) => {
+import { NextFunction, Request, Response } from "express";
+
+export default function asyncHandler(fn: (req: Request<any>, res: Response<any>, next?: NextFunction) => Promise<Response> | Promise<void>) {
+	return (req: Request, res: Response, next?: NextFunction) => {
 		fn(req, res, next).catch(next);
 	};
 }

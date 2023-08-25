@@ -4,7 +4,7 @@ import AppError from "../../utils/app-error";
 
 const errorHandler = (err: Error | AppError, _req: Request, res: Response, _next: NextFunction) => {
   // Log to console for dev
-  console.log(err);
+  // console.log(err);
 
   let statusCode = 500;
   let message = "Server Error";

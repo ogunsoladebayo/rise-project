@@ -20,6 +20,8 @@ const ENV_VARS = [
   "MIKRO_ORM_USER",
   "MIKRO_ORM_PASSWORD",
   "MIKRO_ORM_DB_NAME",
+  "JWT_SECRET",
+  "JWT_EXPIRES_IN",
 ];
 checkEnvs(ENV_VARS);
 

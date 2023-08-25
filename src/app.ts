@@ -6,18 +6,21 @@ import { config } from "dotenv";
 import errorHandler from "./engine/middlewares/error";
 import { RequestContext } from "@mikro-orm/core";
 import { Database } from "./configs/database";
-import { postRouter, userRouter } from "./engine/routes";
+import postRouter from "./engine/routes/posts.route";
+import { userRouter } from "./engine/routes";
+import { expressjwt } from "express-jwt";
+import { getToken } from "./engine/controllers/auth.controller";
+// import userRouter from "./engine/routes/users.route";
 
 config();
 
 const app = express();
 
 export const db = new Database();
-( async () => {
-  await db.connect();
-  await db.migrate();
+db.connect().then(async () => {
   db.injectRepositories();
-} )();
+  await db.migrate();
+});
 
 app.use(morgan("tiny"));
 
@@ -29,6 +32,15 @@ app.use(helmet());
 
 app.use((req, res, next) => RequestContext.create(db.em, next));
 
+
+app.use(expressjwt({
+  secret: process.env.JWT_SECRET,
+  algorithms: [ "HS256" ],
+  credentialsRequired: false,
+}));
+
+
+app.use("/auth", getToken);
 app.use("/users", userRouter);
 app.use("/posts", postRouter);
 

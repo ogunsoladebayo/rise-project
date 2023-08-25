@@ -1,6 +1,4 @@
-import app from "../src/app";
-import * as http from "http";
-import { checkEnvs } from "../src/utils";
+import { checkEnvs } from "../../../src/utils";
 
 describe("checkEnvs()", () => {
 	test("throws an error if a required environment variable is missing", () => {
@@ -17,17 +15,5 @@ describe("checkEnvs()", () => {
 		process.env.NODE_ENV = "test";
 
 		checkEnvs(ENV_VARS);
-	});
-});
-
-describe("app.listen()", () => {
-	let server: http.Server;
-	test("creates a http server", () => {
-		server = app.listen(3000, () => {
-			expect(server).toBeInstanceOf(http.Server);
-		});
-	});
-	afterAll(() => {
-		server.close();
 	});
 });

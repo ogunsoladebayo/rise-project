@@ -10,6 +10,7 @@ export class Database {
   public commentRepository: EntityRepository<Comment>
 
   public async connect () {
+    try {
     this.orm = await MikroORM.init<PostgreSqlDriver>({
       driver: PostgreSqlDriver,
       entities: [ "./dist/engine/entities" ],
@@ -20,7 +21,11 @@ export class Database {
         disableForeignKeys: false,
       },
     });
-    console.log("Database connected".green);
+    this.em = this.orm.em;
+    console.log("Connected to the database");
+    } catch (error) {
+    console.log("Failed to connect to the database", error);
+    }
   }
 
   public async migrate () {
@@ -30,7 +35,6 @@ export class Database {
   }
 
   public injectRepositories () {
-    this.em = this.orm.em;
     this.userRepository = this.orm.em.getRepository(User);
     this.postRepository = this.orm.em.getRepository(Post);
     this.commentRepository = this.orm.em.getRepository(Comment);
