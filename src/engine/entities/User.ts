@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 @Entity()
 export class User extends BaseEntity {
   @Property({ unique: true })
-  username!: string;
+  name!: string;
 
   @Property({ unique: true })
   email!: string;
@@ -28,9 +28,9 @@ export class User extends BaseEntity {
   @OneToMany(() => Comment, (comment) => comment.author)
   comments = new Collection<Comment>(this);
 
-  constructor (username: string, email: string, password: string) {
+  constructor (name: string, email: string, password: string) {
     super();
-    this.username = username;
+    this.name = name;
     this.email = email;
     this.password = password;
   }
@@ -40,7 +40,7 @@ export class User extends BaseEntity {
   }
 
   getSignedJwtToken (): string {
-    return jwt.sign({ id: this.id, username: this.username }, process.env.JWT_SECRET, {
+    return jwt.sign({ id: this.id, username: this.name }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN
     })
   }

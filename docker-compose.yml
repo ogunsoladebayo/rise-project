@@ -1,0 +1,50 @@
+version: "3"
+services:
+    rise-demo-app:
+        container_name: rise-demo-app
+        build:
+            context: .
+            dockerfile: Dockerfile
+        depends_on:
+            - postgres
+        environment:
+            NODE_ENV: production
+            PORT: 4000
+            MIKRO_ORM_HOST: postgres
+            MIKRO_ORM_PORT: 5432
+            MIKRO_ORM_USER: postgres
+            MIKRO_ORM_PASSWORD: RiseApp
+            MIKRO_ORM_DB_NAME: RiseDemoAppDB
+            JWT_SECRET: secret
+            JWT_EXPIRE: 1d
+        ports:
+            - "4000:4000"
+    postgres:
+        container_name: postgres
+        image: postgres:15.4
+        ports:
+            - "5432:5432"
+        volumes:
+            - ~/postgresdata:/var/lib/postgresql/data
+        restart: always
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: RiseApp
+            POSTGRES_DB: RiseDemoAppDB
+    pgadmin:
+        container_name: pgadmin
+        image: dpage/pgadmin4:7.6
+        restart: always
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@risedemo.com
+            PGADMIN_DEFAULT_PASSWORD: ADminPG
+            PGADMIN_LISTEN_PORT: 80
+        ports:
+            - "8081:80"
+        volumes:
+            - pgadmin-data:/var/lib/pgadmin
+        depends_on:
+            - postgres
+volumes:
+    db-data:
+    pgadmin-data:

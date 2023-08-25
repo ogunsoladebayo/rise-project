@@ -20,6 +20,7 @@ export const db = new Database();
 db.connect().then(async () => {
   db.injectRepositories();
   await db.migrate();
+  await db.seed().then(() => console.log("Seeded the database successfully"));
 });
 
 app.use(morgan("tiny"));

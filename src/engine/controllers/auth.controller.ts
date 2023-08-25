@@ -6,7 +6,7 @@ export const getToken = asyncHandler(async (req: Request, res: Response, next: N
   const { username, password } = req.body;
   if (!username || !password) return next(new Error("Please provide username and password"));
 
-  const user = await db.userRepository.findOne({ username });
+  const user = await db.userRepository.findOne({ name: username });
   if (!user) return next(new Error("Invalid username or password"));
 
   const passwordValid = await user.matchPassword(password);

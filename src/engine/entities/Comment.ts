@@ -5,7 +5,7 @@ import { User } from "./User";
 
 @Entity()
 export class Comment extends BaseEntity {
-  @Property()
+  @Property({ columnType: "text"})
   content!: string;
 
   @ManyToOne(() => Post, { ref: true, nullable: false })

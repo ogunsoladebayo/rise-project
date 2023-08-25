@@ -4,10 +4,10 @@ import { User } from "./User";
 
 @Entity()
 export class Post extends BaseEntity {
-	@Property()
+	@Property({ columnType: "text"})
 	title!: string;
 
-	@Property()
+	@Property({ columnType: "text"})
 	body!: string;
 
 	@ManyToOne(() => User, { ref: true, nullable: false })

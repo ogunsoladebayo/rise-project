@@ -37,8 +37,8 @@
           "default": "now()",
           "mappedType": "datetime"
         },
-        "username": {
-          "name": "username",
+        "name": {
+          "name": "name",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
@@ -70,10 +70,10 @@
       "indexes": [
         {
           "columnNames": [
-            "username"
+            "name"
           ],
           "composite": false,
-          "keyName": "user_username_unique",
+          "keyName": "user_name_unique",
           "primary": false,
           "unique": true
         },
@@ -134,21 +134,21 @@
         },
         "title": {
           "name": "title",
-          "type": "varchar(255)",
+          "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "string"
+          "mappedType": "text"
         },
         "body": {
           "name": "body",
-          "type": "varchar(255)",
+          "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "string"
+          "mappedType": "text"
         },
         "author_id": {
           "name": "author_id",
@@ -224,12 +224,12 @@
         },
         "content": {
           "name": "content",
-          "type": "varchar(255)",
+          "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "string"
+          "mappedType": "text"
         },
         "post_id": {
           "name": "post_id",

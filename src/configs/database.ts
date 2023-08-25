@@ -1,6 +1,7 @@
 import { EntityManager, EntityRepository, MikroORM } from "@mikro-orm/core";
 import { PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { Comment, Post, User } from "../engine/entities";
+import { DatabaseSeeder } from "../seeders/seeder";
 
 export class Database {
   public orm: MikroORM;
@@ -32,6 +33,11 @@ export class Database {
     const migrator = this.orm.getMigrator();
     await migrator.createMigration();
     await migrator.up();
+  }
+
+  public async seed () {
+    const seeder = this.orm.getSeeder();
+    await seeder.seed(DatabaseSeeder);
   }
 
   public injectRepositories () {
