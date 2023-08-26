@@ -78,9 +78,11 @@ token-based authentication is applied to all routes except POST to `/users`. Inp
 
 1. Clone this repository.
 2. Install dependencies using `npm install`.
-3. Configure your PostgreSQL and Redis instances.
+3. Configure your PostgreSQL instances.
 4. Update environment variables.
 5. Run the app using `npm start`.
+6. Database migrations are run automatically on app start.
+7. Seed data with 10 users, 20 posts and 100 comments are added automatically on app start.
 
 ### Docker Compose
 
@@ -90,6 +92,8 @@ To run the application using Docker Compose:
 2. Run `docker compose up` to build and start the app.
 3. Access the API at `http://localhost:4080`.
 4. PG Admin is available at `http://localhost:8081`.
+5. Database migrations are run automatically on app start.
+6. Seed data with 10 users, 20 posts and 100 comments are added automatically on app start.
 
 ## Tests
 
