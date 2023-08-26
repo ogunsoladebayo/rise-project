@@ -1,4 +1,4 @@
-import { Collection, Entity, OneToMany, Property } from "@mikro-orm/core";
+import { Collection, Entity, Index, OneToMany, Property } from "@mikro-orm/core";
 import { BaseEntity } from "./BaseEntity";
 import { Post } from "./Post";
 import { Comment } from "./Comment";
@@ -6,6 +6,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 @Entity()
+@Index({ properties: [ "name"] })
 export class User extends BaseEntity {
   @Property({ unique: true })
   name!: string;

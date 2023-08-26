@@ -87,6 +87,15 @@
           "unique": true
         },
         {
+          "keyName": "user_name_index",
+          "columnNames": [
+            "name"
+          ],
+          "composite": false,
+          "primary": false,
+          "unique": false
+        },
+        {
           "keyName": "user_pkey",
           "columnNames": [
             "id"
@@ -163,6 +172,15 @@
       "name": "post",
       "schema": "public",
       "indexes": [
+        {
+          "columnNames": [
+            "author_id"
+          ],
+          "composite": false,
+          "keyName": "post_author_id_index",
+          "primary": false,
+          "unique": false
+        },
         {
           "keyName": "post_pkey",
           "columnNames": [
@@ -253,6 +271,24 @@
       "name": "comment",
       "schema": "public",
       "indexes": [
+        {
+          "columnNames": [
+            "author_id"
+          ],
+          "composite": false,
+          "keyName": "comment_author_id_index",
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "comment_created_at_index",
+          "columnNames": [
+            "created_at"
+          ],
+          "composite": false,
+          "primary": false,
+          "unique": false
+        },
         {
           "keyName": "comment_pkey",
           "columnNames": [

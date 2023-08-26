@@ -10,7 +10,7 @@ export class Post extends BaseEntity {
 	@Property({ columnType: "text"})
 	body!: string;
 
-	@ManyToOne(() => User, { ref: true, nullable: false })
+	@ManyToOne(() => User, { ref: true, nullable: false, index: true })
 	author!: Rel<User>;
 
 	constructor (title: string, content: string) {
