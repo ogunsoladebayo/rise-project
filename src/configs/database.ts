@@ -17,9 +17,9 @@ export class Database {
       entities: [ "./dist/engine/entities" ],
       entitiesTs: [ "./src/engine/entities" ],
       migrations: {
-        path: "./dist/migrations",
-        pathTs: "./src/migrations",
+        path: "./migrations",
         disableForeignKeys: false,
+        emit: "js",
       },
     });
     this.em = this.orm.em;

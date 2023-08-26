@@ -16,7 +16,7 @@ services:
             MIKRO_ORM_PASSWORD: RiseApp
             MIKRO_ORM_DB_NAME: RiseDemoAppDB
             JWT_SECRET: secret
-            JWT_EXPIRE: 1d
+            JWT_EXPIRES_IN: 1d
         ports:
             - "4000:4000"
     postgres:

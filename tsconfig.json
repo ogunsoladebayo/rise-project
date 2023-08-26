@@ -32,7 +32,8 @@
     "./src/server.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "src/**/*.json"
   ],
   "exclude": [
     "node_modules"

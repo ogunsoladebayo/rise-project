@@ -87,7 +87,7 @@ token-based authentication is applied to all routes except POST to `/users`. Inp
 To run the application using Docker Compose:
 
 1. Open a terminal and navigate to the project directory.
-2. Run `docker-compose up` to build and start the app.
+2. Run `docker compose up` to build and start the app.
 3. Access the API at `http://localhost:4080`.
 4. PG Admin is available at `http://localhost:8081`.
 
