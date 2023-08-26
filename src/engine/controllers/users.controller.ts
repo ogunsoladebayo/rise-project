@@ -12,9 +12,9 @@ import AppError from "../../utils/app-error";
  */
 export const createUser = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
   const { name, email, password } = req.body;
-  if (!name || !email || !password) return next(new AppError(400, "Please provide username and email"));
+  if (!name || !email || !password) return next(new AppError(400, "Please provide name,email and password"));
   // name should not contain spaces
-  if (/^\s*$/.test(name)) return next(new AppError(400, "Username should not contain spaces"));
+  if (/^\s*$/.test(name)) return next(new AppError(400, "name should not contain spaces"));
   // email should be valid
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return next(new AppError(400, "Please provide a valid email"));
 

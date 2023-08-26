@@ -97,7 +97,7 @@ Unit tests ensure the functionality and correctness of the application. Run test
 
 ## Submission
 
-- API endpoints are documented in the provided Postman collection: [Postman Collection](https://).
-- The API is live on a server: [Hosted API URL](https://).
+- API endpoints are documented in the provided Postman collection: [Postman Collection](https://documenter.getpostman.com/view/11616904/2s9Y5YR2cv).
+- The API is live on Render: [Rise Demo](https://https://rise-demo.onrender.com).
 
 For any inquiries, please contact [usman.ogunsola@outlook.com](mailto:usman.ogunsola@outlook.com).
